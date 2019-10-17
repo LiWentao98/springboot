@@ -6,6 +6,7 @@ UserService的实现类
 
 import com.item_bank.springboot.mapper.AdminMapper;
 import com.item_bank.springboot.mapper.TeacherMapper;
+import com.item_bank.springboot.pojo.Admin;
 import com.item_bank.springboot.pojo.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public HashMap teacherLogin(String jobNumber, String password) {
         HashMap<String, Object> data = new HashMap<String, Object>();
         Teacher teacher = teacherMapper.findTeacherByJobNumberAndPassword(jobNumber,password);
-        data.put("teacher",teacher);
+        data.put("user", teacher);
         if(teacher != null){
             data.put("msg", "登录成功！");
         }else {
@@ -35,6 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public HashMap adminLogin(String jobNumber, String password) {
-        return null;
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        Admin admin = adminMapper.findAdminByJobNumberAndPassword(jobNumber,password);
+        data.put("user", admin);
+        if(admin != null){
+            data.put("msg", "登录成功！");
+        }else {
+            data.put("msg", "密码错误！");
+        }
+        return data;
     }
 }
