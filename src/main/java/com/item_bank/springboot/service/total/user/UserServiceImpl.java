@@ -1,0 +1,49 @@
+package com.item_bank.springboot.service.total.user;
+
+/*
+UserService的实现类
+ */
+
+import com.item_bank.springboot.mapper.total.AdminMapper;
+import com.item_bank.springboot.mapper.total.TeacherMapper;
+import com.item_bank.springboot.pojo.total.Admin;
+import com.item_bank.springboot.pojo.total.Teacher;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+
+@Service
+public class UserServiceImpl implements UserService {
+    //自动注入mapper
+    @Autowired
+    TeacherMapper teacherMapper;
+    @Autowired
+    AdminMapper adminMapper;
+
+    @Override
+    public HashMap teacherLogin(String jobNumber, String password) {
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        Teacher teacher = teacherMapper.findTeacherByJobNumberAndPassword(jobNumber,password);
+        data.put("user", teacher);
+        if(teacher != null){
+            data.put("msg", "登录成功！");
+        }else {
+            data.put("msg", "密码错误！");
+        }
+        return data;
+    }
+
+    @Override
+    public HashMap adminLogin(String jobNumber, String password) {
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        Admin admin = adminMapper.findAdminByJobNumberAndPassword(jobNumber,password);
+        data.put("user", admin);
+        if(admin != null){
+            data.put("msg", "登录成功！");
+        }else {
+            data.put("msg", "密码错误！");
+        }
+        return data;
+    }
+}
