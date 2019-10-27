@@ -7,7 +7,9 @@ package com.item_bank.springboot.controller.user;
 import com.item_bank.springboot.pojo.Teacher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -68,6 +70,26 @@ public class TestController {
             list.add(session.getAttribute(e.nextElement().toString()));
         }
         return list;
+    }
+
+    @ResponseBody
+    @RequestMapping("/upload")
+    public String upload(
+            @RequestParam("qState") String qState,
+            @RequestParam("qContent") String qContent,
+            @RequestParam("qType") String qType,
+            @RequestParam("qMajor") String qMajor,
+            @RequestParam("qSubject") String qSubject,
+            @RequestParam("chapter") String chapter,
+            @RequestParam("difficulty") String difficulty,
+            @RequestParam("knowledge") String knowledge,
+            @RequestParam("t_id") String t_id,
+            @RequestParam("qImages")MultipartFile[] qImages
+            ){
+        for(MultipartFile f : qImages){
+            String filename = f.getOriginalFilename();
+        }
+        return "上传成功！";
     }
 
 }
