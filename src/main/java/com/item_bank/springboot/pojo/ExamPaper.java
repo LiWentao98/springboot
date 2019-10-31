@@ -7,17 +7,17 @@ package com.item_bank.springboot.pojo;
 import java.util.Date;
 
 public class ExamPaper {
-    private int e_id;//试卷唯一标识
+    private Integer e_id;//试卷唯一标识
     private String e_subject;//所属科目
     private String finish_type;//组卷方式
     private Date finish_time;//组卷时间
-    private int t_id;//所属教师id
+    private Integer t_id;//所属教师id
 
-    public int getE_id() {
+    public Integer getE_id() {
         return e_id;
     }
 
-    public void setE_id(int e_id) {
+    public void setE_id(Integer e_id) {
         this.e_id = e_id;
     }
 
@@ -45,11 +45,11 @@ public class ExamPaper {
         this.finish_time = finish_time;
     }
 
-    public int getT_id() {
+    public Integer getT_id() {
         return t_id;
     }
 
-    public void setT_id(int t_id) {
+    public void setT_id(Integer t_id) {
         this.t_id = t_id;
     }
 

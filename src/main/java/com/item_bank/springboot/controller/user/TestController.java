@@ -4,17 +4,19 @@ package com.item_bank.springboot.controller.user;
 测试视图控制层
  */
 
+import com.item_bank.springboot.pojo.Question;
 import com.item_bank.springboot.pojo.Teacher;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/test")
@@ -72,24 +74,24 @@ public class TestController {
         return list;
     }
 
+
     @ResponseBody
-    @RequestMapping("/upload")
-    public String upload(
-            @RequestParam("qState") String qState,
-            @RequestParam("qContent") String qContent,
-            @RequestParam("qType") String qType,
-            @RequestParam("qMajor") String qMajor,
-            @RequestParam("qSubject") String qSubject,
-            @RequestParam("chapter") String chapter,
-            @RequestParam("difficulty") String difficulty,
-            @RequestParam("knowledge") String knowledge,
-            @RequestParam("t_id") String t_id,
-            @RequestParam("qImages")MultipartFile[] qImages
-            ){
-        for(MultipartFile f : qImages){
-            String filename = f.getOriginalFilename();
-        }
-        return "上传成功！";
+    @RequestMapping("/get_question_by_id")
+    public Question getQuestionById(@RequestBody Map map){
+        String qId = map.get("id").toString();
+        Question question = new Question();
+        question.setQ_id(Integer.parseInt(qId));
+        question.setQ_state("通过");
+        question.setQ_content("试题内容aaaaaa");
+        question.setQ_type("大题");
+        question.setQ_major("计算机科学学院");
+        question.setQ_subject("计算机网络");
+        question.setChapter("网络层");
+        question.setDifficulty("中等");
+        question.setKnowledge("网络层基础");
+        question.setUpload_time(new Date());
+        question.setT_id(2);
+        return question;
     }
 
 }

@@ -7,10 +7,10 @@ package com.item_bank.springboot.pojo;
 import java.util.Date;
 
 public class Question {
-    private int q_id;//试题唯一标识
+    private Integer q_id;//试题唯一标识
     private String q_state;//试题状态
     private String q_content;//试题文本内容
-    private String q_image_url;//试题相关图片目录
+    private String q_image_url;//试题相关图片路径
     private String q_type;//试题题型
     private String q_major;//所属专业
     private String q_subject;//所属科目
@@ -18,13 +18,13 @@ public class Question {
     private String difficulty;//难度
     private String knowledge;//考查的知识点
     private Date upload_time;//上传时间
-    private int t_id;//所属教师id
+    private Integer t_id;//所属教师id
 
-    public int getQ_id() {
+    public Integer getQ_id() {
         return q_id;
     }
 
-    public void setQ_id(int q_id) {
+    public void setQ_id(Integer q_id) {
         this.q_id = q_id;
     }
 
@@ -108,11 +108,11 @@ public class Question {
         this.upload_time = upload_time;
     }
 
-    public int getT_id() {
+    public Integer getT_id() {
         return t_id;
     }
 
-    public void setT_id(int t_id) {
+    public void setT_id(Integer t_id) {
         this.t_id = t_id;
     }
 
