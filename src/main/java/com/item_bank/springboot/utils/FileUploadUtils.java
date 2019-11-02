@@ -19,7 +19,7 @@ public class FileUploadUtils {
 
         String filePath = ClassUtils.getDefaultClassLoader().getResource("").getPath();
 
-        filePath=filePath+"/static/images/"+teacherId+"/";
+        filePath= filePath+"/static/images/"+teacherId+"/";
 
         File file1=new File(filePath+fileName);
         // 判断路径是否存在，不存在则新创建一个
@@ -27,7 +27,7 @@ public class FileUploadUtils {
             file1.getParentFile().mkdirs();
         }
         // 将上传文件保存到目标文件目录
-        //网络传输的是字节流，所以需要见一个文件（相当于一个容器把这些流水接住），下面这个方法就是灌流操作
+        //网络传输的是字节流，所以需要建一个文件（相当于一个容器把这些流水接住），下面这个方法就是灌流操作
         file.transferTo(file1);
         return fileName;
     }

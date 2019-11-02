@@ -11,4 +11,5 @@ public interface UserService {
     public HashMap teacherLogin(String jobNumber, String password);
     //管理员类型的用户登录接口
     public HashMap adminLogin(String jobNumber, String password);
+    //
 }

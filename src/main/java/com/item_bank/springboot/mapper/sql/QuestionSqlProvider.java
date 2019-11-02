@@ -15,7 +15,7 @@ public class QuestionSqlProvider {
      * @param question
      * @return sql.toString()
      */
-    public String insertQuestion(Question question) {//参数暂且不用，后面加动态判断再用
+    public String insertQuestion(Question question) {
         String sql = new SQL()
                 .INSERT_INTO("question")
                 .VALUES("q_state","#{q_state}")
@@ -114,6 +114,18 @@ public class QuestionSqlProvider {
             if(question.getKnowledge() !=null){
                 WHERE("knowledge = #{knowledge}");
             }
+        }}.toString();
+    }
+
+    public String SelectQuestionList(Integer t_id,int page){
+        int pageSize = 30;
+        int page1 = page - 1;
+        return new SQL(){{
+            SELECT("q_id, q_state, upload_time");
+            FROM("question");
+            WHERE("t_id = #{t_id}");
+            ORDER_BY("q_id asc");
+            LIMIT("#{page1}, 30");
         }}.toString();
     }
 }

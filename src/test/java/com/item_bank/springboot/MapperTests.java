@@ -61,6 +61,6 @@ public class MapperTests {
 //        question.setKnowledge("考查Java继承");
 //        question.setT_id(1);
 //        System.out.println(questionMapper.findQuestionByCondition(question));
-        System.out.println(questionMapper.findQuestionByTId(1));
+//        System.out.println(questionMapper.findQuestionByTId(1));
     }
 }

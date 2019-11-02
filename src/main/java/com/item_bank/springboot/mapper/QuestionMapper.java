@@ -13,9 +13,13 @@ import java.util.List;
 
 @Component
 public interface QuestionMapper {
-    //查询所有试题（命题教师自己出的,根据命题老师id）
-    @Select("select * from question where t_id = #{t_id}")
-    public List<Question> findQuestionByTId(@Param("t_id") Integer t_id);
+    /**
+     * 分页部分封装在QuestionService层，这里只接受t_id查询结果
+     * @param t_id
+     * @return
+     */
+    @Select("select q_id, q_state, upload_time from question where t_id = #{t_id}")
+    public List<Question> findQuestionByTId(Integer t_id);
 
     //试题保存
     @InsertProvider(type = QuestionSqlProvider.class,method = "insertQuestion")
@@ -32,4 +36,5 @@ public interface QuestionMapper {
     //根据（q_type、q_major、q_subject、chapter、difficulty、knowledge）查询试题，其中允许传空值
     @SelectProvider(type = QuestionSqlProvider.class,method = "selectQuestionByCondition")
     public List<Question> findQuestionByCondition(Question question);
+
 }
